@@ -1,0 +1,48 @@
+@font-face {
+    font-family: saks-pro ;
+    src: url(../font/SF-Pro.ttf);
+}
+body {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    font-family: saks-pro;
+}
+#topbar {
+    z-index: 10;
+    width: 100%;
+    height: 70px;
+    position: fixed;
+    top: -10px;
+    left: -1px;
+    background-color: rgba(64, 64, 64, 0.25)ff;
+    backdrop-filter: blur(10px);
+    border-bottom: 1.5px solid rgba(183, 183, 183, 0.25);;
+}
+#main-container {
+    position: relative;
+    top: 80px;
+    left: 50px;
+    width: 96%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.meal-card {
+    width: 200px;
+    height: 300px;
+    border-radius: 15px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+    transition: all 0.5s ease;
+    border: 1.5px solid rgba(20, 20, 20, 0.25);
+    position: relative;
+    background-color: rgb(233, 233, 233);
+}
+
+.meal-card img {
+    width: 200px;
+    height: 200px;
+    border-radius: 15px 15px 0 0;
+}
