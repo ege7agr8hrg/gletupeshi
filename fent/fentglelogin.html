@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-<link rel="stylesheet" href="./fentglesignup.css">
+<link rel="stylesheet" href="./fentglelogin.css">
 </head>
 <style>
     @font-face {
@@ -28,7 +28,7 @@ body {
     border-bottom: 1.5px solid rgba(183, 183, 183, 0.25);
 }
 
-#sign-up {
+#log-in {
     position: relative;
     top: 120px;
     left: 470px;
@@ -41,7 +41,7 @@ body {
     color: black;
     text-align: center;
 }
-    #sign-up input {
+    #log-in input {
         background: rgba(255, 255, 255, 0.1);
         border-radius: 25px;
         backdrop-filter: blur(10px);
@@ -60,26 +60,37 @@ body {
         <h1 style="position: relative; top: 0px; left:20px;">Osama</h1>
         <h2 style="position: relative; top:-60px; left: 590px; ">Account is required to use</h2>
     </div>
-    <div id="sign-up" style="z-index: 1;">
-        <form id="signup">
-        <h1>Sign up</h1>
+    <div id="log-in" style="z-index: 1;">
+        <form id="login">
+        <h1>Log in</h1>
         <h4>Username</h3>
         <input type="text" name="username" placeholder="Username" required>
         <h4>Password</h4>
         <input type="password" name="password" placeholder="Password" required style="position: relative; left: 0px;">
-        <a href="./fentglelogin.html" style="position: absolute; left: 10px; top: 400px;">Already have an account?</a>
-        <button onclick="submitsignup" type="submit" id="signupgle">Sign Up</button>
+        <a href="./fentglelogin.html" style="position: absolute; left: 10px; top: 400px;">Don't have an account?</a>
+        <button onclick="submitlogin" type="submit" id="logingle">Log in</button>
         </form>
 
+    <div id="message" style="position: relative; top: 130px; font-size: 20px; left: 10px;"></div>
     </div>
     <script>
-        document.getElementById('signup').onsubmit = function(event) {
+        document.getElementById("login").onsubmit = function(event) {
             event.preventDefault();
+
             const username = event.target.username.value;
             const password = event.target.password.value;
-            localStorage.setItem('User', JSON.stringify({ username, password }));
-            alert('Your account is created');
-        };
+            const stored = JSON.parse(localStorage.getItem("User"));
+
+            // Simple validation (for demonstration purposes)
+            if(stored && username === stored.username && password === stored.password) {
+                document.getElementById("message").innerText = "Login successful!";
+                setTimeout(function() {
+                    window.location.href = "./fentgle.html"; // Redirect to main page
+                }, 1000);
+            } else {
+                document.getElementById("message").innerText = "Invalid username or password.";
+            };
+        }
     </script>
 </body>
 </html>

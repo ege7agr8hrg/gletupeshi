@@ -1,4 +1,4 @@
-#sign-up input:hover {
+#log-in input:hover {
   background-color: rgb(230, 230, 230);
   color: black;
 }
@@ -20,7 +20,7 @@
   }
 }
 
-#sign-up button {
+#log-in button {
   position: relative;
   top: 50px;
   left: 0px;
@@ -33,7 +33,7 @@
   transition: all 0.3s ease-in-out
 }
 
-#sign-up button:hover {
+#log-in button:hover {
   background-color: rgb(191, 228, 45);
   border: none;
   color: black;
