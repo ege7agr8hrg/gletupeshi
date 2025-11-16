@@ -3,7 +3,7 @@
     src: url(../font-shit/SF-Pro.ttf)
 }
 body {
-    background-color: rgb(255, 255, 255);
+    background-color: #f0eddf;
     color: black;
     font-family: saks-pro;
 }
@@ -31,6 +31,7 @@ body {
     backdrop-filter: blur(15px);
     z-index: 11;
     transition: all 0.28s ease-in-out;
+    border: rgba(0, 0, 0, 0.116) 2px solid;
 }
 #searchinput:focus{
     width: 200px;
@@ -43,12 +44,12 @@ body {
 #main-container {
     position: relative;
     top: 80px;
-    left: 50px;
+    left: 35px;
     width: 96%;
     height: auto;
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
 }
 
 .meal-card {
@@ -60,9 +61,13 @@ body {
     transition: all 0.5s ease;
     border: 1.5px solid rgba(20, 20, 20, 0.25);
     position: relative;
-    background-color: rgb(233, 233, 233);
+    background: none;
+    background-color: rgba(125, 125, 125, 0.091);
+    transition: all 0.2s ease-in-out;
 }
-
+.meal-card:hover {
+    transform:scale(1.15);
+}
 .meal-card img {
     width: 200px;
     height: 200px;
@@ -86,3 +91,80 @@ body {
         95% {width: 160px;}
         100% {width: 150px;}
     }
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    animation: fadeInModal 0.3s ease;
+}
+.modal-overlay.closing{
+    animation: fadeOutModal 0.2s ease;
+}
+.modal-overlay.closing .modal-content {
+    transform-origin: center center;
+    animation: none;
+    transition: transform 220ms ease-in-out;
+    transform: scale(0.98);
+}
+
+@keyframes fadeInModal {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOutModal {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.modal-content {
+    background: #f0eddf;
+    border-radius: 15px;
+    padding: 24px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #666;
+    font-weight: bold;
+}
+
+.modal-close:hover { color: #000; }
+
+.modal-img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.modal-content h2 { margin: 12px 0; }
+.modal-content h3 { margin-top: 18px; margin-bottom: 8px; }
+.modal-content ul { list-style: none; padding: 0; }
+.modal-content li { padding: 6px 0; border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+
+@keyframes furryinflation {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.1); }
+    100% { transform: scale(1.15); }
+}
