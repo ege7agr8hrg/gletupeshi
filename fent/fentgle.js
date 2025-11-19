@@ -55,6 +55,7 @@ async function openMealModal(mealId) {
         document.getElementById("main-container").style.filter='blur(3px)';
         document.getElementById("topbar").style.filter='blur(3px)';
         document.getElementById('diddy').style.filter='blur(3px)';
+        document.getElementById('footer').style.filter='blur(3px)';
         // build ingredients list
         const ingredients = [];
         for (let i = 1; i <= 20; i++) {
@@ -98,12 +99,14 @@ function closeMealModal() {
     const main = document.getElementById("main-container");
     const top = document.getElementById("topbar");
     const diddy = document.getElementById('diddy');
+    const footer = document.getElementById('footer');
 
     // if modal not present, ensure blur cleared and exit
     if (!modal) {
         if (main) main.style.filter = 'blur(0)';
         if (top) top.style.filter = 'blur(0)';
         if (diddy) diddy.style.filter = 'blur(0)';
+        if (footer) footer.style.filter = 'blur(0)';
         return;
     }
 
@@ -116,6 +119,7 @@ function closeMealModal() {
         if (main) main.style.filter = 'blur(0)';
         if (top) top.style.filter = 'blur(0)';
         if (diddy) diddy.style.filter = 'blur(0)';
+        if (footer) footer.style.filter = 'blur(0)';
     }, { once: true });
 }
 function setupSearch() {
