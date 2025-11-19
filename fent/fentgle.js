@@ -68,6 +68,7 @@ async function openMealModal(mealId) {
             <div class="modal-overlay" id="mealModal">
                 <div class="modal-content">
                     <button class="modal-close" onclick="closeMealModal()">&times;</button>
+                    <h1>Meal Details</h1>
                     <img src="${meal.strMealThumb}" alt="${escapeHtml(meal.strMeal)}" class="modal-img">
                     <h2>${escapeHtml(meal.strMeal)}</h2>
                     <p><strong>Category:</strong> ${escapeHtml(meal.strCategory)}</p>
