@@ -67,7 +67,7 @@ body {
         <input type="text" name="username" placeholder="Username" required>
         <h4>Password</h4>
         <input type="password" name="password" placeholder="Password" required style="position: relative; left: 0px;">
-        <a href="./fentglelogin.html" style="position: absolute; left: 10px; top: 400px;">Don't have an account?</a>
+        <a href="./fentglesignup.html" style="position: absolute; left: 10px; top: 400px;">Don't have an account?</a>
         <button onclick="submitlogin" type="submit" id="logingle">Log in</button>
         </form>
 
@@ -91,6 +91,25 @@ body {
                 document.getElementById("message").innerText = "Invalid username or password.";
             };
         }
+document.getElementById("login").onsubmit = function(event) {
+    event.preventDefault();
+
+    const username = event.target.username.value.trim();
+    const password = event.target.password.value;
+    const stored = JSON.parse(localStorage.getItem("User"));
+
+    // Simple validation (demo)
+    if (stored && username === stored.username && password === stored.password) {
+        document.getElementById("message").innerText = "Login successful!";
+        // set app auth flag the main page checks
+        localStorage.setItem('fentgle_user', JSON.stringify({ name: username }));
+        setTimeout(function() {
+            window.location.href = "./fentgle.html";
+        }, 800);
+    } else {
+        document.getElementById("message").innerText = "Invalid username or password.";
+    }
+};
     </script>
 </body>
 </html>

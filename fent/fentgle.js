@@ -1,9 +1,11 @@
+// ...existing code...
 const fentgleAPI = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 const fentgleByLetter = "https://www.themealdb.com/api/json/v1/1/search.php?f=";
 
 window.onload = function() {
     loadmeals();
     setupSearch();
+    updateAuthUI();
 };
 
 async function loadmeals(apiUrl = fentgleAPI) {
@@ -41,6 +43,12 @@ function renderMeal(meals) {
     document.querySelectorAll('.meal-card').forEach(card => {
         card.addEventListener('click', (e) => {
             const mealId = e.currentTarget.dataset.id;
+            // require login: redirect to login page if not logged in
+            if (!isLoggedin()){
+                // redirect to your existing login page (you said you'll add login button later)
+                window.location.href = './fentglelogin.html';
+                return;
+            }
             openMealModal(mealId);
         });
     });
@@ -61,7 +69,7 @@ async function openMealModal(mealId) {
         for (let i = 1; i <= 20; i++) {
             const ing = meal[`strIngredient${i}`];
             const measure = meal[`strMeasure${i}`];
-            if (ing) ingredients.push(`${measure} ${ing}`);
+            if (ing) ingredients.push(`${measure || ''} ${ing}`.trim());
         }
 
         // build and insert modal
@@ -148,5 +156,24 @@ function setupSearch() {
         }
     }, 220));
 }
-
+function isLoggedin(){
+    // primary flag used by app
+    return !!localStorage.getItem('fentgle_user');
+}
+function updateAuthUI() {
+    const btn = document.getElementById('authBtn');
+    if (!btn) return;
+    if (isLoggedin()) {
+        btn.textContent = 'Logout';
+        btn.onclick = () => {
+            localStorage.removeItem('fentgle_user');
+            updateAuthUI();
+        };
+    } else {
+        btn.textContent = 'Login';
+        btn.onclick = () => {
+            window.location.href = './fentglelogin.html';
+        };
+    }
+}
 function escapeHtml(s){return String(s||'').replace(/[&<>"'`=\/]/g,m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','`':'&#x60;','=':'&#x3D;','/':'&#x2F;'}[m]));}
